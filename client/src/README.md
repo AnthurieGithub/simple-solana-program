@@ -17,7 +17,7 @@ program keypair>`.
 The program is likely stored in a path similar to this one:
 
 ````
-/home/admin/projects/solana/example-helloworld/dist/program/helloworld-keypair.json
+/home/phil/sol-workspace/simple-solana-program/dist/program/helloworld-keypair.json
 ```
 
 ## Status

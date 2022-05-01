@@ -42,7 +42,8 @@ fn main() {
 
     zc::client::say_hello(&player, &program, &connection).unwrap();
     println!(
-        "({}) greetings have been sent.",
-        zc::client::count_greetings(&player, &program, &connection).unwrap()
+        "({}) greetings have been sent. ",
+        zc::client::count_greetings(&player, &program, &connection).unwrap(),
+        //zc::client::get_greetings_name(&player, &program, &connection).unwrap(),
     )
 }

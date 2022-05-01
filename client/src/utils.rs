@@ -9,6 +9,7 @@ use yaml_rust::YamlLoader;
 #[derive(BorshSerialize, BorshDeserialize)]
 struct GreetingSchema {
     counter: u32,
+    name: String,
 }
 
 /// Parses and returns the Solana yaml config on the system.
@@ -84,7 +85,7 @@ pub fn get_greeting_public_key(player: &Pubkey, program: &Pubkey) -> Result<Pubk
 
 /// Determines and reports the size of greeting data.
 pub fn get_greeting_data_size() -> Result<usize> {
-    let encoded = GreetingSchema { counter: 0 }
+    let encoded = GreetingSchema { counter: 0, name: "2022 MLB All Star Game".to_string()}
         .try_to_vec()
         .map_err(|e| Error::SerializationError(e))?;
     Ok(encoded.len())
@@ -95,4 +96,11 @@ pub fn get_greeting_data_size() -> Result<usize> {
 pub fn get_greeting_count(data: &[u8]) -> Result<u32> {
     let decoded = GreetingSchema::try_from_slice(data).map_err(|e| Error::SerializationError(e))?;
     Ok(decoded.counter)
+}
+
+/// Deserializes a greeting account and reports the value of its
+/// name string.
+pub fn get_greeting_name(data: &[u8]) -> Result<String> {
+    let decoded = GreetingSchema::try_from_slice(data).map_err(|e| Error::SerializationError(e))?;
+    Ok(decoded.name)
 }

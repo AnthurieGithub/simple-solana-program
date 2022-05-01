@@ -1,0 +1,21 @@
+{
+    "label":"Run With Arguments",
+    "type":"process",
+    "command":"cargo",
+    "group":"none",
+    "args":[
+       "run",
+       {
+          "value":"--",
+          "quoting":"weak"
+       },
+       {
+          "value":"--argumentOne=\"Something\"",
+          "quoting":"weak"
+       },
+       {
+          "value":"--argumentTwo=\"Something\"",
+          "quoting":"weak"
+       }
+    ]
+ }

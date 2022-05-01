@@ -30,7 +30,10 @@ pub fn get_balance_requirement(connection: &RpcClient) -> Result<u64> {
     let account_fee =
         connection.get_minimum_balance_for_rent_exemption(utils::get_greeting_data_size()?)?;
 
-    let (_, fee_calculator) = connection.get_recent_blockhash()?;
+    //let (_, fee_calculator) = connection.get_recent_blockhash()?;
+    let stuff = connection.get_recent_blockhash()?;
+    let fee_calculator = stuff.1;
+
     let transaction_fee = fee_calculator.lamports_per_signature * 100;
 
     Ok(transaction_fee + account_fee)
@@ -171,4 +174,11 @@ pub fn count_greetings(player: &Keypair, program: &Keypair, connection: &RpcClie
     let greeting_pubkey = utils::get_greeting_public_key(&player.pubkey(), &program.pubkey())?;
     let greeting_account = connection.get_account(&greeting_pubkey)?;
     Ok(utils::get_greeting_count(&greeting_account.data)?)
+}
+
+/// Pulls down the greeting account data and the value of 'name'
+pub fn get_greetings_name(player: &Keypair, program: &Keypair, connection: &RpcClient) -> Result<String> {
+    let greeting_pubkey = utils::get_greeting_public_key(&player.pubkey(), &program.pubkey())?;
+    let greeting_account = connection.get_account(&greeting_pubkey)?;
+    Ok(utils::get_greeting_name(&greeting_account.data)?)
 }

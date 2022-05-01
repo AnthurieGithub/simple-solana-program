@@ -1,0 +1,73 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in library 'zeke-contract'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--lib",
+                    "--package=zeke-contract"
+                ],
+                "filter": {
+                    "name": "zeke-contract",
+                    "kind": "lib"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "RUST_BACKTRACE": "full"
+            }
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'zeke-contract'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=zeke-contract",
+                    "--package=zeke-contract"
+                ],
+                "filter": {
+                    "name": "zeke-contract",
+                    "kind": "bin"
+                }
+            },
+            "args": ["/home/phil/sol-workspace/simple-solana-program/dist/program/helloworld-keypair.json"],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "RUST_BACKTRACE": "full"
+            }
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'zeke-contract'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=zeke-contract",
+                    "--package=zeke-contract"
+                ],
+                "filter": {
+                    "name": "zeke-contract",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "RUST_BACKTRACE": "full",
+            }
+        }
+    ]
+}
